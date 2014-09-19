@@ -1,0 +1,124 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace ARM.Tests
+{
+    [TestClass]
+    public class PrimTestFixture
+    {
+        [TestMethod]
+        public void DeberiaRetornarListaVaciaSiElGrafoEstaVacio()
+        {
+            var g = new Grafo();
+            var l = Prim.Ejecutar(g);
+            Assert.IsNotNull(l);
+            Assert.AreEqual(0, l.Count);
+        }
+
+        [TestMethod]
+        public void DeberiaRetornarListaVacia1NodoSiElGrafoTiene1Nodo()
+        {
+            var n = new Nodo("A", 23, 45);
+            var g = new Grafo();
+            g.AgregarNodo(n);
+            var l = Prim.Ejecutar(g);
+            Assert.IsNotNull(l);
+            Assert.AreEqual(1, l.Count);
+        }
+
+        [TestMethod]
+        public void DeberiaRetornarARMGrafo()
+        {   
+            var g = new Grafo();
+            var n1 = new Nodo("N1", 23, 45);
+            var n2 = new Nodo("N2", 34, 56);
+            var n3 = new Nodo("N3", 23, 55);
+            var n4 = new Nodo("N4", 23, 67);
+            var n5 = new Nodo("N5", 34, 68);
+            var n6 = new Nodo("N6", 14, 63);
+           
+            g.AgregarNodo(n1);
+            g.AgregarNodo(n2);
+            g.AgregarNodo(n3);
+            g.AgregarNodo(n4);
+            g.AgregarNodo(n5);
+            g.AgregarNodo(n6);
+
+            var e1 = new Enlace(2, n1, n2);
+            var e2 = new Enlace(7, n2, n3);
+            var e3 = new Enlace(3, n1, n3);
+            var e4 = new Enlace(20, n1, n6);
+            var e5 = new Enlace(5, n3, n6);
+            var e6 = new Enlace(9, n1, n5);
+            var e7 = new Enlace(3, n5, n4);
+
+            g.AgregarEnlace(e1);
+            g.AgregarEnlace(e2);
+            g.AgregarEnlace(e3);
+            g.AgregarEnlace(e4);
+            g.AgregarEnlace(e5);
+            g.AgregarEnlace(e6);
+            g.AgregarEnlace(e7);
+
+            var l = Prim.Ejecutar(g);
+            Assert.IsNotNull(l);
+            Assert.AreEqual(l.Count, 6);
+            Assert.AreEqual(n1, l[0]);
+            Assert.AreEqual(n2, l[1]);
+            Assert.AreEqual(n3, l[2]);
+            Assert.AreEqual(n6, l[3]);
+            Assert.AreEqual(n5, l[4]);
+            Assert.AreEqual(n4, l[5]);
+        }
+
+         [TestMethod]
+        public void DeberiaRetornarELEnlaceDeMenorPeso()
+        {
+            var g = new Grafo();
+            var n1 = new Nodo("N1", 23, 45);
+            var n2 = new Nodo("N2", 34, 56);
+            var n3 = new Nodo("N3", 23, 55);
+            var n4 = new Nodo("N4", 23, 67);
+            var n5 = new Nodo("N5", 34, 68);
+            var n6 = new Nodo("N6", 14, 63);
+            
+
+            g.AgregarNodo(n1);
+            g.AgregarNodo(n2);
+            g.AgregarNodo(n3);
+            g.AgregarNodo(n4);
+            g.AgregarNodo(n5);
+            g.AgregarNodo(n6);
+
+            var e1 = new Enlace(2, n1, n2);
+            var e2 = new Enlace(7, n2, n3);
+            var e3 = new Enlace(3, n1, n3);
+            var e4 = new Enlace(20, n1, n6);
+            var e5 = new Enlace(5, n3, n6);
+            var e6 = new Enlace(9, n1, n5);
+            var e7 = new Enlace(3, n5, n4);
+
+            g.AgregarEnlace(e1);
+            g.AgregarEnlace(e2);
+            g.AgregarEnlace(e3);
+            g.AgregarEnlace(e4);
+            g.AgregarEnlace(e5);
+            g.AgregarEnlace(e6);
+            g.AgregarEnlace(e7);
+            
+            n1.visitado = true;
+            n2.visitado = true;
+            var enlaces = g.GetEnlaces(n1);
+            
+
+            Enlace eMenor = Prim.EnlaceMenorPeso(enlaces);
+            Assert.IsNotNull(eMenor);
+            Assert.AreNotEqual(eMenor, e1);
+            Assert.AreEqual(eMenor, e3);
+        }
+
+
+
+
+    }
+}
