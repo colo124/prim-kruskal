@@ -4,14 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using ARM;
 
 namespace prims_kruskal
 {
-    public class nodo
+    public class NodoVisual : Nodo
     {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
+        
+        public Point Center;
+        
+        public ArrayList ar = new ArrayList();
+
+        private Font font = new Font("Arial", 9);
+        private SolidBrush brush = new SolidBrush(Color.Black);
+
         [STAThread]
         static void Main()
         {
@@ -20,24 +26,11 @@ namespace prims_kruskal
             Application.Run(new Principal());
         }
 
-        public string name;
-		SolidBrush brush = new SolidBrush(Color.Black);
-		public nodo()
-		{			
-		}
-		public Point Center;
-		Font font=new Font("Arial",9);
-		public ArrayList ar=new ArrayList();
-		public void setcenter(Point p)
-		{
-			Center = p;
-		}
-		public void drawc()
+		public void DibujarNodo()
 		{
             Graphics s = prims_kruskal.Principal.K.CreateGraphics();
-			
 			s.FillEllipse(brush,Center.X,Center.Y,30,30);
-			s.DrawString(name,font,brush,Center.X,Center.Y+30);
+			s.DrawString(nombre,font,brush,Center.X,Center.Y+30);
 		} 
 
     }

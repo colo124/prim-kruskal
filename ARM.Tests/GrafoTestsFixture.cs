@@ -19,7 +19,7 @@ namespace ARM.Tests
         public void DeberiaAgregarNodo()
         {
             Grafo g = new Grafo();
-            Nodo n = new Nodo("colo", 23, 55);
+            Nodo n = new Nodo("colo");
             bool cargo = g.AgregarNodo(n);
             Assert.IsTrue(cargo);
         }
@@ -27,8 +27,8 @@ namespace ARM.Tests
         public void NoDeberiaAgregarNodosConElMismoNombre()
         {
             Grafo g = new Grafo();
-            Nodo n = new Nodo("colo", 23, 55);
-            Nodo b = new Nodo("colo", 34, 56);
+            Nodo n = new Nodo("colo");
+            Nodo b = new Nodo("colo");
             bool cargo = g.AgregarNodo(n);
             cargo = g.AgregarNodo(b);
             Assert.IsFalse(cargo);
@@ -37,8 +37,8 @@ namespace ARM.Tests
         public void DeberiaAgregarEnlace()
         {
             Grafo g = new Grafo();
-            Nodo n = new Nodo("colo", 23, 55);
-            Nodo b = new Nodo("pepe", 34, 56);
+            Nodo n = new Nodo("colo");
+            Nodo b = new Nodo("pepe");
 
             Enlace e = new Enlace(55, n, b);
             g.AgregarNodo(n);
@@ -51,8 +51,8 @@ namespace ARM.Tests
         public void NoDeberiaAgregarEnlaceSiNoExisteElNodo()
         {
             Grafo g = new Grafo();
-            Nodo n = new Nodo("colo", 23, 55);
-            Nodo b = new Nodo("colo", 34, 56);
+            Nodo n = new Nodo("colo");
+            Nodo b = new Nodo("colo");
 
             Enlace e = new Enlace(55, n, b);
 
@@ -63,8 +63,8 @@ namespace ARM.Tests
         public void DeberiaBorrarEnlace()
         {
             Grafo g = new Grafo();
-            Nodo n = new Nodo("colo", 23, 55);
-            Nodo b = new Nodo("colo1", 34, 56);
+            Nodo n = new Nodo("colo");
+            Nodo b = new Nodo("colo1");
 
             Enlace e = new Enlace(55, n, b);
             g.AgregarNodo(n);
@@ -78,8 +78,8 @@ namespace ARM.Tests
         public void DeberiaDevolverNodoYMarcarloComoVisitado()
         {
             Grafo g = new Grafo();
-            Nodo n1 = new Nodo("n1", 23, 55);
-            Nodo n2 = new Nodo("n2", 34, 56);
+            Nodo n1 = new Nodo("n1");
+            Nodo n2 = new Nodo("n2");
 
             Enlace e = new Enlace(55, n1, n2);
             g.AgregarNodo(n1);
@@ -94,8 +94,8 @@ namespace ARM.Tests
         public void DeberiaDevolverNullSiElNodoNoExiste()
         {
             Grafo g = new Grafo();
-            Nodo n1 = new Nodo("n1", 23, 55);
-            Nodo n2 = new Nodo("n2", 34, 56);
+            Nodo n1 = new Nodo("n1");
+            Nodo n2 = new Nodo("n2");
 
             Enlace e = new Enlace(55, n1, n2);
             g.AgregarNodo(n1);
@@ -109,8 +109,8 @@ namespace ARM.Tests
         public void DeberiaDevolverNodoPorDefectoSiNoPasoParametros()
         {
             Grafo g = new Grafo();
-            Nodo n1 = new Nodo("n1", 23, 55);
-            Nodo n2 = new Nodo("n2", 34, 56);
+            Nodo n1 = new Nodo("n1");
+            Nodo n2 = new Nodo("n2");
 
             Enlace e = new Enlace(55, n1, n2);
             g.AgregarNodo(n1);
@@ -125,8 +125,8 @@ namespace ARM.Tests
         public void DeberiaDevolverEnlace()
         {
             Grafo g = new Grafo();
-            Nodo n = new Nodo("colo", 23, 55);
-            Nodo b = new Nodo("colo1", 34, 56);
+            Nodo n = new Nodo("colo");
+            Nodo b = new Nodo("colo1");
 
             Enlace e = new Enlace(55, n, b);
             g.AgregarNodo(n);
@@ -141,12 +141,12 @@ namespace ARM.Tests
         {
             Grafo g = new Grafo();
 
-            var n1 = new Nodo("N1", 23, 45);
-            var n2 = new Nodo("N2", 34, 56);
-            var n3 = new Nodo("N3", 23, 55);
-            var n4 = new Nodo("N4", 23, 67);
-            var n5 = new Nodo("N5", 34, 68);
-            var n6 = new Nodo("N6", 14, 63);
+            var n1 = new Nodo("N1");
+            var n2 = new Nodo("N2");
+            var n3 = new Nodo("N3");
+            var n4 = new Nodo("N4");
+            var n5 = new Nodo("N5");
+            var n6 = new Nodo("N6");
 
             g.AgregarNodo(n1);
             g.AgregarNodo(n2);
@@ -186,8 +186,8 @@ namespace ARM.Tests
         public void DeberiaRetornarTruePorqueTodosLosNodosFueronVisitados()
         {
             Grafo g = new Grafo();
-            Nodo n1 = new Nodo("n1", 23, 55);
-            Nodo n2 = new Nodo("n2", 34, 56);
+            Nodo n1 = new Nodo("n1");
+            Nodo n2 = new Nodo("n2");
 
             Enlace e = new Enlace(55, n1, n2);
             g.AgregarNodo(n1);
@@ -203,12 +203,12 @@ namespace ARM.Tests
         {
             Grafo g = new Grafo();
 
-            var n1 = new Nodo("N1", 23, 45);
-            var n2 = new Nodo("N2", 34, 56);
-            var n3 = new Nodo("N3", 23, 55);
-            var n4 = new Nodo("N4", 23, 67);
-            var n5 = new Nodo("N5", 34, 68);
-            var n6 = new Nodo("N6", 14, 63);
+            var n1 = new Nodo("N1");
+            var n2 = new Nodo("N2");
+            var n3 = new Nodo("N3");
+            var n4 = new Nodo("N4");
+            var n5 = new Nodo("N5");
+            var n6 = new Nodo("N6");
 
             g.AgregarNodo(n1);
             g.AgregarNodo(n2);

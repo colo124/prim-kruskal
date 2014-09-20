@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.Draw = new System.Windows.Forms.Button();
-            this.Prims = new System.Windows.Forms.CheckBox();
-            this.Kruscal = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -58,6 +56,8 @@
             this.directorySearcher10 = new System.DirectoryServices.DirectorySearcher();
             this.directorySearcher11 = new System.DirectoryServices.DirectorySearcher();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -73,35 +73,12 @@
             this.Draw.UseVisualStyleBackColor = true;
             this.Draw.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Prims
-            // 
-            this.Prims.AutoSize = true;
-            this.Prims.Location = new System.Drawing.Point(34, 19);
-            this.Prims.Name = "Prims";
-            this.Prims.Size = new System.Drawing.Size(51, 17);
-            this.Prims.TabIndex = 1;
-            this.Prims.Text = "Prims";
-            this.Prims.UseVisualStyleBackColor = true;
-            this.Prims.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // Kruscal
-            // 
-            this.Kruscal.AutoSize = true;
-            this.Kruscal.Location = new System.Drawing.Point(91, 19);
-            this.Kruscal.Name = "Kruscal";
-            this.Kruscal.Size = new System.Drawing.Size(61, 17);
-            this.Kruscal.TabIndex = 2;
-            this.Kruscal.Text = "Kruscal";
-            this.Kruscal.UseVisualStyleBackColor = true;
-            this.Kruscal.CheckedChanged += new System.EventHandler(this.Kruscal_CheckedChanged);
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(6, 38);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(92, 20);
             this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox3
             // 
@@ -125,7 +102,6 @@
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Nombre";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -148,8 +124,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.groupBox1.Controls.Add(this.Kruscal);
-            this.groupBox1.Controls.Add(this.Prims);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Location = new System.Drawing.Point(336, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(183, 46);
@@ -186,7 +162,6 @@
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Insertar Enlace";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // Hasta
             // 
@@ -195,7 +170,6 @@
             this.Hasta.Name = "Hasta";
             this.Hasta.Size = new System.Drawing.Size(45, 21);
             this.Hasta.TabIndex = 11;
-            this.Hasta.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // Desde
             // 
@@ -204,7 +178,6 @@
             this.Desde.Name = "Desde";
             this.Desde.Size = new System.Drawing.Size(45, 21);
             this.Desde.TabIndex = 10;
-            this.Desde.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -316,7 +289,26 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // Form1
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(20, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(53, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Prim";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(107, 17);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(53, 23);
+            this.button3.TabIndex = 1;
+            this.button3.Text = "Kruskal";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -327,14 +319,12 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Draw);
-            this.Name = "Form1";
+            this.Name = "Principal";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -346,8 +336,6 @@
         #endregion
 
         private System.Windows.Forms.Button Draw;
-        private System.Windows.Forms.CheckBox Prims;
-        private System.Windows.Forms.CheckBox Kruscal;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
@@ -375,6 +363,8 @@
         private System.DirectoryServices.DirectorySearcher directorySearcher10;
         private System.DirectoryServices.DirectorySearcher directorySearcher11;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

@@ -14,15 +14,13 @@ namespace ARM.Tests
         }
 
         [TestMethod]
-        public void DeberiaCrearNodoConNombreYPosicion()
+        public void DeberiaCrearNodoConNombre()
         {
             string nombre = "nodo1";
             int x = 55;
             int y = 33; 
-            Nodo n = new Nodo(nombre,x,y);
+            Nodo n = new Nodo(nombre);
             Assert.AreEqual(nombre, n.nombre);
-            Assert.AreEqual(x, n.x);
-            Assert.AreEqual(y, n.y);
         }
         [TestMethod]
         public void DeberiaModificarNombre()
@@ -30,22 +28,9 @@ namespace ARM.Tests
             string nombre = "nodo1";
             int x = 55;
             int y = 33;
-            Nodo n = new Nodo(nombre, x, y);
+            Nodo n = new Nodo(nombre);
             n.nombre = "pepe";
             Assert.AreEqual(n.nombre, "pepe");
-        }
-
-        [TestMethod]
-        public void DeberiaModificarPosicion()
-        {
-            string nombre = "nodo1";
-            int x = 55;
-            int y = 33;
-            Nodo n = new Nodo(nombre, x, y);
-            n.x = 34;
-            n.y = 55;
-            Assert.AreEqual(n.x, 34);
-            Assert.AreEqual(n.y, 55);
         }
     }
 }

@@ -19,8 +19,8 @@ namespace ARM.Tests
         public void DeberiaRetornarListaVacia1NodoSiElGrafoTiene1Nodo()
         {
             var g = new Grafo();
-            var n1 = new Nodo("N1", 23, 45);
-            var n2 = new Nodo("N2", 34, 56);
+            var n1 = new Nodo("N1");
+            var n2 = new Nodo("N2");
             g.AgregarNodo(n1);
             g.AgregarNodo(n2);
             var e1 = new Enlace(2, n1, n2);
@@ -35,12 +35,12 @@ namespace ARM.Tests
         public void DeberiaRetornarARMGrafo()
         {   
             var g = new Grafo();
-            var n1 = new Nodo("N1", 23, 45);
-            var n2 = new Nodo("N2", 34, 56);
-            var n3 = new Nodo("N3", 23, 55);
-            var n4 = new Nodo("N4", 23, 67);
-            var n5 = new Nodo("N5", 34, 68);
-            var n6 = new Nodo("N6", 14, 63);
+            var n1 = new Nodo("N1");
+            var n2 = new Nodo("N2");
+            var n3 = new Nodo("N3");
+            var n4 = new Nodo("N4");
+            var n5 = new Nodo("N5");
+            var n6 = new Nodo("N6");
            
             g.AgregarNodo(n1);
             g.AgregarNodo(n2);
@@ -79,12 +79,12 @@ namespace ARM.Tests
         public void DeberiaRetornarELEnlaceDeMenorPeso()
         {
             var g = new Grafo();
-            var n1 = new Nodo("N1", 23, 45);
-            var n2 = new Nodo("N2", 34, 56);
-            var n3 = new Nodo("N3", 23, 55);
-            var n4 = new Nodo("N4", 23, 67);
-            var n5 = new Nodo("N5", 34, 68);
-            var n6 = new Nodo("N6", 14, 63);
+            var n1 = new Nodo("N1");
+            var n2 = new Nodo("N2");
+            var n3 = new Nodo("N3");
+            var n4 = new Nodo("N4");
+            var n5 = new Nodo("N5");
+            var n6 = new Nodo("N6");
             
 
             g.AgregarNodo(n1);
