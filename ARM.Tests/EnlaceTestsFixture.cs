@@ -76,6 +76,27 @@ namespace ARM.Tests
             Assert.AreEqual(NodoC, NodoB);
         }
 
+        [TestMethod]
+        public void DeberiaDevolverTruePorqueLos2NodosFueronVisitados()
+        {
+            Nodo NodoA = new Nodo();
+            Nodo NodoB = new Nodo();
+            NodoA.visitado = true;
+            NodoB.visitado = true;
+            Enlace e = new Enlace(33, NodoA, NodoB);
+            Assert.IsTrue(e.NodosVisitados());
+        }
+
+        [TestMethod]
+        public void DeberiaDevolverFalsePorqueUnNodoNoFueroVisitado()
+        {
+            Nodo NodoA = new Nodo();
+            Nodo NodoB = new Nodo();
+            NodoA.visitado = true;
+            NodoB.visitado = false;
+            Enlace e = new Enlace(33, NodoA, NodoB);
+            Assert.IsFalse(e.NodosVisitados());
+        }
 
     }
 }

@@ -116,5 +116,11 @@ namespace ARM
 
             return true;
         }
+
+        public List<Enlace> GetEnlacesDeMenorAMayor()
+        {
+            Enlaces.Sort(new CompararEnlace());
+            return Enlaces;
+        }
     }
 }

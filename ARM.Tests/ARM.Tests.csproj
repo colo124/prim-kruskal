@@ -55,6 +55,7 @@
     <Compile Include="EnlaceTestsFixture.cs" />
     <Compile Include="GrafoTestsFixture.cs" />
     <Compile Include="PrimTestFixture.cs" />
+    <Compile Include="KruskalTestsFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ARM\ARM.csproj">

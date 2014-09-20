@@ -8,22 +8,21 @@ namespace ARM
 {
     public static class Prim
     {
-        public static List<Nodo> Ejecutar(Grafo g){
-            List<Nodo> resultado = new List<Nodo>();
-            Nodo n1 = g.GetNodo();
-            if (n1 != null)
+        public static List<Enlace> Ejecutar(Grafo g){
+            List<Enlace> resultado = new List<Enlace>();
+            Nodo n = g.GetNodo();
+            if (n != null)
             {
-                resultado.Add(n1);
-                List<Enlace> enlaces = g.GetEnlaces(n1);
+                n.visitado = true;
+                List<Enlace> enlaces = g.GetEnlaces(n);
                 while (!g.TodosVisitados())
                 {
                     var enlaceMenor = EnlaceMenorPeso(enlaces);
-                    var n2 = enlaceMenor.GetNodoNoVisitado();
-                    n2.visitado = true;
-                    enlaces.AddRange(g.GetEnlaces(n2));
+                    n = enlaceMenor.GetNodoNoVisitado();
+                    n.visitado = true;
+                    enlaces.AddRange(g.GetEnlaces(n));
                     enlaces = RemoverEnlaces(enlaces);
-                    resultado.Add(n2);
-                    n1 = n2;
+                    resultado.Add(enlaceMenor);
                 }
             }
            

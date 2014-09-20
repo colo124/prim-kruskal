@@ -39,6 +39,20 @@ namespace ARM
                 return this.NodoB;
             return this.NodoA;
         }
+
+        public bool NodosVisitados()
+        {
+            return (this.NodoA.visitado && this.NodoB.visitado);
+        }
+    }
+
+    public class CompararEnlace : IComparer<Enlace>
+    {
+
+        public int Compare(Enlace x, Enlace y)
+        {
+            return (x.Peso.CompareTo(y.Peso));
+        }
     }
 
 }

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Enlace.cs" />
     <Compile Include="Grafo.cs" />
+    <Compile Include="Kruskal.cs" />
     <Compile Include="Nodo.cs" />
     <Compile Include="Prim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -135,6 +135,7 @@ namespace ARM.Tests
             Enlace e1 = g.GetEnlace(n, b);
             Assert.AreEqual(e, e1);
         }
+        
         [TestMethod]
         public void DeberiaDevolverLaListaDeEnlacesDe1NodoSiNoSeVisitoElOtroNodo()
         {
@@ -195,6 +196,52 @@ namespace ARM.Tests
             n2.visitado = true;
             bool visitados = g.TodosVisitados();
             Assert.IsTrue(visitados);
+        }
+
+        [TestMethod]
+        public void DeberiaDevolverLaListaDeEnlacesOrdenada()
+        {
+            Grafo g = new Grafo();
+
+            var n1 = new Nodo("N1", 23, 45);
+            var n2 = new Nodo("N2", 34, 56);
+            var n3 = new Nodo("N3", 23, 55);
+            var n4 = new Nodo("N4", 23, 67);
+            var n5 = new Nodo("N5", 34, 68);
+            var n6 = new Nodo("N6", 14, 63);
+
+            g.AgregarNodo(n1);
+            g.AgregarNodo(n2);
+            g.AgregarNodo(n3);
+            g.AgregarNodo(n4);
+            g.AgregarNodo(n5);
+            g.AgregarNodo(n6);
+
+            var e1 = new Enlace(2, n1, n2);
+            var e2 = new Enlace(7, n2, n3);
+            var e3 = new Enlace(3, n1, n3);
+            var e4 = new Enlace(20, n1, n6);
+            var e5 = new Enlace(5, n3, n6);
+            var e6 = new Enlace(9, n1, n5);
+            var e7 = new Enlace(3, n5, n4);
+
+            g.AgregarEnlace(e1);
+            g.AgregarEnlace(e2);
+            g.AgregarEnlace(e3);
+            g.AgregarEnlace(e4);
+            g.AgregarEnlace(e5);
+            g.AgregarEnlace(e6);
+            g.AgregarEnlace(e7);
+
+            List<Enlace> enlaces = g.GetEnlacesDeMenorAMayor();
+
+            Assert.AreEqual(2, enlaces[0].Peso);
+            Assert.AreEqual(3, enlaces[1].Peso);
+            Assert.AreEqual(3, enlaces[2].Peso);
+            Assert.AreEqual(5, enlaces[3].Peso);
+            Assert.AreEqual(7, enlaces[4].Peso);
+            Assert.AreEqual(9, enlaces[5].Peso);
+            Assert.AreEqual(20, enlaces[6].Peso);
         }
     }
 }
