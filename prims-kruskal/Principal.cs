@@ -41,9 +41,22 @@ namespace prims_kruskal
             Point p = new Point(x,y);
             n.Center = p;
             n.nombre = this.textBox1.Text;
-            this.nodos.Add(n);
-            this.g.AgregarNodo((Nodo)n);
-            Dibujar();
+            bool bandera = true;
+            if (this.nodos.Count > 0) {  
+                foreach (var Nodo in nodos)
+                {
+                    if (n.nombre == Nodo.nombre)
+                    {
+                        MessageBox.Show("No se puede repitir el nombre de un Nodo", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        bandera = false;
+                    }
+                }
+            }
+            if (bandera) { 
+                this.nodos.Add(n);
+                this.g.AgregarNodo((Nodo)n);
+                Dibujar();
+            }
         }
         private void button1_Click_1(object sender, EventArgs e) //Evento: Dibujo; Captura los elementos seleccionados en el dropdown y luego los busca por el nombre en la lista de nodos, luego se los manda a la funcion de dibujar la linea
         {
@@ -81,12 +94,34 @@ namespace prims_kruskal
             Graphics g = prims_kruskal.Principal.K.CreateGraphics();
             Point d = new Point(desde.Center.X + 15, desde.Center.Y + 15);
             Point h = new Point(hasta.Center.X + 15, hasta.Center.Y + 15);
-            EnlaceVisual e = new EnlaceVisual(peso, desde, hasta); 
-            enlaces.Add(e);
-            g.DrawLine(pen, d, h);
-            //PointF p = new PointF(d.X-h.X,d.Y-h.Y);
-            //g.DrawString(peso.ToString(), font, brush, p);
-            this.g.AgregarEnlace(e);
+            EnlaceVisual e = new EnlaceVisual(peso, desde, hasta);
+            bool bandera = true;
+            if (this.enlaces.Count > 0)
+            {
+                foreach (var Enlace in enlaces)
+                {
+                    if (e.NodoA == Enlace.NodoA && e.NodoB == Enlace.NodoB || e.NodoB == Enlace.NodoA && e.NodoA == Enlace.NodoB)
+                    {
+                        MessageBox.Show("No se puede repetir un enlace ya creado", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        bandera = false;
+                    }
+                }
+            }
+            if (e.NodoA == e.NodoB)
+            {
+                MessageBox.Show("No se puede crear un enlace a si mismo", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bandera = false;
+            }
+            if (bandera)
+            {
+                enlaces.Add(e);
+                g.DrawLine(pen, d, h);
+                //PointF p = new PointF(d.X-h.X,d.Y-h.Y);
+                //g.DrawString(peso.ToString(), font, brush, p);
+                this.g.AgregarEnlace(e);
+            }
+
+
         }
       
         private void Form1_MouseDown(object sender, MouseEventArgs e) //evento: movimiento; genera un cuadrado alrededor del circulo que al tocarlo simula la seleccion del nodo
@@ -121,11 +156,9 @@ namespace prims_kruskal
         private void button2_Click(object sender, EventArgs e)
         {
             this.enlaces = Prim.Ejecutar(g);
+            Graphics s = prims_kruskal.Principal.K.CreateGraphics();
+            s.Clear(this.BackColor);
             this.Dibujar();
         }
-
-
-
-
     }
 }

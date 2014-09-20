@@ -21,6 +21,5 @@ namespace ARM
         {
             this.nombre = null;
         }
-
     }
 }
