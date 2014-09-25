@@ -58,9 +58,13 @@
             this.directorySearcher10 = new System.DirectoryServices.DirectorySearcher();
             this.directorySearcher11 = new System.DirectoryServices.DirectorySearcher();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblResultado = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // Draw
@@ -141,6 +145,7 @@
             this.button3.TabIndex = 1;
             this.button3.Text = "Kruskal";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button2
             // 
@@ -308,12 +313,42 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // lblResultado
+            // 
+            this.lblResultado.AutoSize = true;
+            this.lblResultado.Location = new System.Drawing.Point(6, 25);
+            this.lblResultado.Name = "lblResultado";
+            this.lblResultado.Size = new System.Drawing.Size(0, 13);
+            this.lblResultado.TabIndex = 14;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblResultado);
+            this.groupBox4.Location = new System.Drawing.Point(336, 285);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(183, 97);
+            this.groupBox4.TabIndex = 15;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Resultado";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(220, 359);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(522, 406);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -329,6 +364,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -365,6 +402,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label lblResultado;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button4;
     }
 }
 

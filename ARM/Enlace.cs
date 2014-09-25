@@ -29,9 +29,6 @@ namespace ARM
         public Nodo NodoA { get; set; }
 
         public int Peso { get; set; }
-
-
-
        
         public Nodo GetNodoNoVisitado()
         {
@@ -48,7 +45,6 @@ namespace ARM
 
     public class CompararEnlace : IComparer<Enlace>
     {
-
         public int Compare(Enlace x, Enlace y)
         {
             return (x.Peso.CompareTo(y.Peso));
