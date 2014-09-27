@@ -36,91 +36,43 @@ namespace prims_kruskal
             K = this;
             this.seleccionado = null; //inicializa seleccionado en null 
             ///////////////////
-
-            var n1 = new NodoVisual();
-            n1.Center = new Point(13, 13);
-            n1.nombre = "N1";
-            var n2 = new NodoVisual();
-            n2.Center = new Point(100, 100);
-            n2.nombre = "N2";
-            var n3 = new NodoVisual();
-            n3.Center = new Point(200, 300);
-            n3.nombre = "N3";
-            var n4 = new NodoVisual();
-            n4.Center = new Point(43, 43);
-            n4.nombre = "N4";
-            var n5 = new NodoVisual();
-            n5.Center = new Point(53, 53);
-            n5.nombre = "N5";
-            var n6 = new NodoVisual();
-            n6.Center = new Point(63, 63);
-            n6.nombre = "N6";
-
-            g.AgregarNodo(n1);
-            g.AgregarNodo(n2);
-            g.AgregarNodo(n3);
-            g.AgregarNodo(n4);
-            g.AgregarNodo(n5);
-            g.AgregarNodo(n6);
-
-            this.nodos.Add(n1);
-            this.nodos.Add(n2);
-            this.nodos.Add(n3);
-            this.nodos.Add(n4);
-            this.nodos.Add(n5);
-            this.nodos.Add(n6);
-
-            var e1 = new EnlaceVisual(2, n1, n2);
-            var e2 = new EnlaceVisual(7, n2, n3);
-            var e3 = new EnlaceVisual(3, n1, n3);
-            var e4 = new EnlaceVisual(20, n1, n6);
-            var e5 = new EnlaceVisual(5, n3, n6);
-            var e6 = new EnlaceVisual(9, n1, n5);
-            var e7 = new EnlaceVisual(3, n5, n4);
-
-            g.AgregarEnlace(e1);
-            g.AgregarEnlace(e2);
-            g.AgregarEnlace(e3);
-            g.AgregarEnlace(e4);
-            g.AgregarEnlace(e5);
-            g.AgregarEnlace(e6);
-            g.AgregarEnlace(e7);
-
-            this.enlaces.Add(e1);
-            this.enlaces.Add(e2);
-            this.enlaces.Add(e3);
-            this.enlaces.Add(e4);
-            this.enlaces.Add(e5);
-            this.enlaces.Add(e6);
-            this.enlaces.Add(e7);
-
-            this.Dibujar();
         }
         private void button1_Click(object sender, EventArgs e) // Funcion: recibe los valores para dibijar el nodo, crea un nuevo punto y un nuevo nodo y llama a la funcion para dibujar
         {
-            NodoVisual n = new NodoVisual();
-            int x,y = 0;
-            x = int.Parse(this.textBox3.Text);
-            y = int.Parse(this.textBox4.Text);
-            Point p = new Point(x,y);
-            n.Center = p;
-            n.nombre = this.textBox1.Text;
-            bool selectNodo = true;
-            if (this.nodos.Count > 0) {  
-                foreach (var Nodo in nodos)
+            if (this.textBox3.Text != "" && this.textBox4.Text != "")
+            {
+                NodoVisual n = new NodoVisual();
+                int x, y = 0;
+                x = int.Parse(this.textBox3.Text);
+                y = int.Parse(this.textBox4.Text);
+                Point p = new Point(x, y);
+                n.Center = p;
+                n.nombre = this.textBox1.Text;
+                bool selectNodo = true;
+                if (this.nodos.Count > 0)
                 {
-                    if (n.nombre == Nodo.nombre)
+                    foreach (var Nodo in nodos)
                     {
-                        MessageBox.Show("No se puede repetir el nombre de un Nodo", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        selectNodo = false;
+                        if (n.nombre == Nodo.nombre)
+                        {
+                            MessageBox.Show("No se puede repetir el nombre de un Nodo", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            selectNodo = false;
+                        }
                     }
                 }
+                if (selectNodo)
+                {
+                    this.nodos.Add(n);
+                    this.g.AgregarNodo((Nodo)n);
+                    this.Dibujar();
+                }
             }
-            if (selectNodo) { 
-                this.nodos.Add(n);
-                this.g.AgregarNodo((Nodo)n);
-                this.Dibujar();
+            else
+            {
+                MessageBox.Show("Debe completar los campor X, Y!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
+            
         }
         private void button1_Click_1(object sender, EventArgs e) //Evento: Dibujo; Captura los elementos seleccionados en el dropdown y luego los busca por el nombre en la lista de nodos, luego se los manda a la funcion de dibujar la linea
         {
@@ -170,14 +122,14 @@ namespace prims_kruskal
                 {
                     if (e.NodoA == Enlace.NodoA && e.NodoB == Enlace.NodoB || e.NodoB == Enlace.NodoA && e.NodoA == Enlace.NodoB)
                     {
-                        MessageBox.Show("No se puede repetir un enlace ya creado", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("No se puede repetir un enlace ya creado", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         selectEnlace = false;
                     }
                 }
             }
             if (e.NodoA == e.NodoB)
             {
-                MessageBox.Show("No se puede crear un enlace a si mismo", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se puede crear un enlace a si mismo", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 selectEnlace = false;
             }
             if (selectEnlace)
@@ -222,6 +174,10 @@ namespace prims_kruskal
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (resolucion.Count > 0)
+            {
+                this.Reset();
+            }
             this.ResetDibujo();
             this.indiceResolucion = 0;
             this.resolucion = Prim.Ejecutar(g);
@@ -231,6 +187,7 @@ namespace prims_kruskal
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+            this.Reset();
             this.ResetDibujo();
             this.indiceResolucion = 0;
             this.resolucion = Kruskal.Ejecutar(g);
@@ -239,14 +196,14 @@ namespace prims_kruskal
         }
         private void ImprimirResultado()
         {
-            string resultado = "Lista de Enlaces: ";
+            string resultado = "Lista de Enlaces: " + Environment.NewLine;
             int pesoTotal = 0;
             foreach (var enlace in this.resolucion)
             {
-                resultado += "[" + enlace.NodoA.nombre + "-" + enlace.NodoB.nombre + "] ";
+                resultado += "[" + enlace.NodoA.nombre + "-" + enlace.NodoB.nombre + "]" + Environment.NewLine;
                 pesoTotal += enlace.Peso;
             }
-            this.lblResultado.Text = resultado + "/n Costo Total: "+ pesoTotal; 
+            this.lblResultado.Text = resultado + "Costo Total: "+ pesoTotal; 
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -257,6 +214,10 @@ namespace prims_kruskal
                 indiceResolucion++;
                 this.Dibujar();
             }
+            else
+            {
+                MessageBox.Show("El algoritmos a finalizado correctamente!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void ResetDibujo() {
 
@@ -265,6 +226,224 @@ namespace prims_kruskal
                 enlace.Color = Color.Black;
             }
         }
+        private void Reset()
+        {
+            //this.resolucion.Clear();
+            //this.Dibujar();
+            
+        }
+
+        private void button7_Click(object sender, EventArgs e)  // crea grafo de 3 nodos
+        {
+            var n1 = new NodoVisual();
+            n1.Center = new Point(13, 13);
+            n1.nombre = "N1";
+            var n2 = new NodoVisual();
+            n2.Center = new Point(300, 200);
+            n2.nombre = "N2";
+            var n3 = new NodoVisual();
+            n3.Center = new Point(450, 13);
+            n3.nombre = "N3";
+
+            g.AgregarNodo(n1);
+            g.AgregarNodo(n2);
+            g.AgregarNodo(n3);
+
+            this.nodos.Add(n1);
+            this.nodos.Add(n2);
+            this.nodos.Add(n3);
+
+            var e1 = new EnlaceVisual(2, n1, n2);
+            var e2 = new EnlaceVisual(7, n2, n3);
+            var e3 = new EnlaceVisual(3, n1, n3);
+
+            g.AgregarEnlace(e1);
+            g.AgregarEnlace(e2);
+            g.AgregarEnlace(e3);
+
+            this.enlaces.Add(e1);
+            this.enlaces.Add(e2);
+            this.enlaces.Add(e3);
+
+            this.Dibujar();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var n1 = new NodoVisual();
+            n1.Center = new Point(13, 13);
+            n1.nombre = "N1";
+            var n2 = new NodoVisual();
+            n2.Center = new Point(300, 200);
+            n2.nombre = "N2";
+            var n3 = new NodoVisual();
+            n3.Center = new Point(450, 13);
+            n3.nombre = "N3";
+            var n4 = new NodoVisual();
+            n4.Center = new Point(450, 350);
+            n4.nombre = "N4";
+            var n5 = new NodoVisual();
+            n5.Center = new Point(13, 350);
+            n5.nombre = "N5";
+            var n6 = new NodoVisual();
+            n6.Center = new Point(200, 200);
+            n6.nombre = "N6";
+
+            g.AgregarNodo(n1);
+            g.AgregarNodo(n2);
+            g.AgregarNodo(n3);
+            g.AgregarNodo(n4);
+            g.AgregarNodo(n5);
+            g.AgregarNodo(n6);
+
+            this.nodos.Add(n1);
+            this.nodos.Add(n2);
+            this.nodos.Add(n3);
+            this.nodos.Add(n4);
+            this.nodos.Add(n5);
+            this.nodos.Add(n6);
+
+            var e1 = new EnlaceVisual(2, n1, n2);
+            var e2 = new EnlaceVisual(7, n2, n3);
+            var e3 = new EnlaceVisual(3, n1, n3);
+            var e4 = new EnlaceVisual(20, n1, n6);
+            var e5 = new EnlaceVisual(5, n3, n6);
+            var e6 = new EnlaceVisual(9, n1, n5);
+            var e7 = new EnlaceVisual(3, n5, n4);
+
+            g.AgregarEnlace(e1);
+            g.AgregarEnlace(e2);
+            g.AgregarEnlace(e3);
+            g.AgregarEnlace(e4);
+            g.AgregarEnlace(e5);
+            g.AgregarEnlace(e6);
+            g.AgregarEnlace(e7);
+
+            this.enlaces.Add(e1);
+            this.enlaces.Add(e2);
+            this.enlaces.Add(e3);
+            this.enlaces.Add(e4);
+            this.enlaces.Add(e5);
+            this.enlaces.Add(e6);
+            this.enlaces.Add(e7);
+
+            this.Dibujar();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var n1 = new NodoVisual();
+            n1.Center = new Point(13, 13);
+            n1.nombre = "N1";
+            var n2 = new NodoVisual();
+            n2.Center = new Point(300, 200);
+            n2.nombre = "N2";
+            var n3 = new NodoVisual();
+            n3.Center = new Point(450, 13);
+            n3.nombre = "N3";
+            var n4 = new NodoVisual();
+            n4.Center = new Point(450, 350);
+            n4.nombre = "N4";
+            var n5 = new NodoVisual();
+            n5.Center = new Point(13, 350);
+            n5.nombre = "N5";
+            var n6 = new NodoVisual();
+            n6.Center = new Point(200, 200);
+            n6.nombre = "N6";
+            var n7 = new NodoVisual();
+            n7.Center = new Point(570, 405);
+            n7.nombre = "N7";
+            var n8 = new NodoVisual();
+            n8.Center = new Point(570, 280);
+            n8.nombre = "N8";
+            var n9 = new NodoVisual();
+            n9.Center = new Point(400, 150);
+            n9.nombre = "N9";
+            var n10 = new NodoVisual();
+            n10.Center = new Point(500, 200);
+            n10.nombre = "N10";
+            var n11 = new NodoVisual();
+            n11.Center = new Point(50, 405);
+            n11.nombre = "N11";
+            var n12 = new NodoVisual();
+            n12.Center = new Point(200, 405);
+            n12.nombre = "N12";
+
+
+            g.AgregarNodo(n1);
+            g.AgregarNodo(n2);
+            g.AgregarNodo(n3);
+            g.AgregarNodo(n4);
+            g.AgregarNodo(n5);
+            g.AgregarNodo(n6);
+            g.AgregarNodo(n7);
+            g.AgregarNodo(n8);
+            g.AgregarNodo(n9);
+            g.AgregarNodo(n10);
+            g.AgregarNodo(n11);
+            g.AgregarNodo(n12);
+
+            this.nodos.Add(n1);
+            this.nodos.Add(n2);
+            this.nodos.Add(n3);
+            this.nodos.Add(n4);
+            this.nodos.Add(n5);
+            this.nodos.Add(n6);
+            this.nodos.Add(n7);
+            this.nodos.Add(n8);
+            this.nodos.Add(n9);
+            this.nodos.Add(n10);
+            this.nodos.Add(n11);
+            this.nodos.Add(n12);
+
+            var e1 = new EnlaceVisual(2, n1, n2);
+            var e2 = new EnlaceVisual(7, n2, n3);
+            var e3 = new EnlaceVisual(3, n1, n3);
+            var e4 = new EnlaceVisual(20, n1, n6);
+            var e5 = new EnlaceVisual(5, n3, n6);
+            var e6 = new EnlaceVisual(9, n1, n5);
+            var e7 = new EnlaceVisual(3, n5, n4);
+            var e8 = new EnlaceVisual(22, n4, n7);
+            var e9 = new EnlaceVisual(8, n7, n8);
+            var e10 = new EnlaceVisual(1, n9, n10);
+            var e11 = new EnlaceVisual(10, n10, n11);
+            var e12 = new EnlaceVisual(52, n11, n12);
+            var e13 = new EnlaceVisual(19, n12, n7);
+            var e14 = new EnlaceVisual(13, n10, n9);
+
+            g.AgregarEnlace(e1);
+            g.AgregarEnlace(e2);
+            g.AgregarEnlace(e3);
+            g.AgregarEnlace(e4);
+            g.AgregarEnlace(e5);
+            g.AgregarEnlace(e6);
+            g.AgregarEnlace(e7);
+            g.AgregarEnlace(e8);
+            g.AgregarEnlace(e9);
+            g.AgregarEnlace(e10);
+            g.AgregarEnlace(e11);
+            g.AgregarEnlace(e12);
+            g.AgregarEnlace(e13);
+            g.AgregarEnlace(e14);
+
+            this.enlaces.Add(e1);
+            this.enlaces.Add(e2);
+            this.enlaces.Add(e3);
+            this.enlaces.Add(e4);
+            this.enlaces.Add(e5);
+            this.enlaces.Add(e6);
+            this.enlaces.Add(e7);
+            this.enlaces.Add(e8);
+            this.enlaces.Add(e9);
+            this.enlaces.Add(e10);
+            this.enlaces.Add(e11);
+            this.enlaces.Add(e12);
+            this.enlaces.Add(e13);
+            this.enlaces.Add(e14);
+
+            this.Dibujar();
+        }
+
 
     }
 }
