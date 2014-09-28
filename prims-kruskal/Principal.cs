@@ -37,7 +37,7 @@ namespace prims_kruskal
             this.seleccionado = null; //inicializa seleccionado en null 
             ///////////////////
         }
-        private void button1_Click(object sender, EventArgs e) // Funcion: recibe los valores para dibijar el nodo, crea un nuevo punto y un nuevo nodo y llama a la funcion para dibujar
+        private void btnDibujarNodo_Click(object sender, EventArgs e) // Funcion: recibe los valores para dibijar el nodo, crea un nuevo punto y un nuevo nodo y llama a la funcion para dibujar
         {
             if (this.textBox3.Text != "" && this.textBox4.Text != "")
             {
@@ -65,6 +65,9 @@ namespace prims_kruskal
                     this.nodos.Add(n);
                     this.g.AgregarNodo((Nodo)n);
                     this.Dibujar();
+                    this.textBox1.Text = string.Empty;
+                    this.textBox3.Text = string.Empty;
+                    this.textBox4.Text = string.Empty;
                 }
             }
             else
@@ -74,7 +77,7 @@ namespace prims_kruskal
             
             
         }
-        private void button1_Click_1(object sender, EventArgs e) //Evento: Dibujo; Captura los elementos seleccionados en el dropdown y luego los busca por el nombre en la lista de nodos, luego se los manda a la funcion de dibujar la linea
+        private void btnDibujarEnlace_Click(object sender, EventArgs e) //Evento: Dibujo; Captura los elementos seleccionados en el dropdown y luego los busca por el nombre en la lista de nodos, luego se los manda a la funcion de dibujar la linea
         {
             var desde = this.Desde.Items[this.Desde.SelectedIndex]; //elem seleccionado desde
             var hasta = this.Hasta.Items[this.Hasta.SelectedIndex]; //elem seleccionado hasta
@@ -82,6 +85,10 @@ namespace prims_kruskal
             var nodo_hasta = this.nodos.FirstOrDefault(h => h.nombre == hasta); //busca en la lista de nodos donde el nombre sea el mismo
             var peso = int.Parse(this.textBox6.Text);
             this.DibujarEnlace(peso, (NodoVisual)nodo_desde, (NodoVisual)nodo_hasta);
+            this.Desde.ResetText();
+            this.Hasta.ResetText();
+            this.textBox6.Text = string.Empty;
+
             
         }
         private void Dibujar() // Funcion: Dibujo; Dibuja los nodos con sus respectivos nombres, a su ves carga los nombres los dropdowns.
@@ -90,6 +97,7 @@ namespace prims_kruskal
             Desde.Items.Clear();
             Hasta.Items.Clear();
             Graphics s = prims_kruskal.Principal.K.CreateGraphics();
+            s.Clear(System.Drawing.SystemColors.ActiveCaption);
             foreach (NodoVisual nodo in this.nodos)
             {
                 Desde.Items.Add(nodo.nombre);
@@ -172,24 +180,17 @@ namespace prims_kruskal
             this.seleccionado = null;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnPrim_Click(object sender, EventArgs e)
         {
-            if (resolucion.Count > 0)
-            {
-                this.Reset();
-            }
-            this.ResetDibujo();
-            this.indiceResolucion = 0;
+            this.ResetResolucion();
             this.resolucion = Prim.Ejecutar(g);
             this.Dibujar();
             this.ImprimirResultado();
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void btnKruskal_Click(object sender, EventArgs e)
         {
-            this.Reset();
-            this.ResetDibujo();
-            this.indiceResolucion = 0;
+            this.ResetResolucion();
             this.resolucion = Kruskal.Ejecutar(g);
             this.Dibujar();
             this.ImprimirResultado();
@@ -206,7 +207,7 @@ namespace prims_kruskal
             this.lblResultado.Text = resultado + "Costo Total: "+ pesoTotal; 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnSiguiente_Click(object sender, EventArgs e)
         {
             if (this.resolucion.Count > 0 && this.indiceResolucion < this.resolucion.Count)
             {
@@ -219,22 +220,31 @@ namespace prims_kruskal
                 MessageBox.Show("El algoritmos a finalizado correctamente!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void ResetDibujo() {
+        private void ResetResolucion() {
+            this.resolucion = new List<Enlace>();
+            this.indiceResolucion = 0;
+            this.lblResultado.Text = string.Empty;
 
             foreach (EnlaceVisual enlace in this.enlaces)
             {
                 enlace.Color = Color.Black;
             }
         }
+
         private void Reset()
         {
-            //this.resolucion.Clear();
-            //this.Dibujar();
-            
+            this.g = new Grafo();
+            this.nodos = new List<Nodo>();
+            this.enlaces = new List<Enlace>();
+            this.resolucion = new List<Enlace>();
+            this.indiceResolucion = 0;
+            this.lblResultado.Text = string.Empty;
+            this.Dibujar();
         }
 
-        private void button7_Click(object sender, EventArgs e)  // crea grafo de 3 nodos
+        private void btnGrafo3_Click(object sender, EventArgs e)  // crea grafo de 3 nodos
         {
+            this.Reset();
             var n1 = new NodoVisual();
             n1.Center = new Point(13, 13);
             n1.nombre = "N1";
@@ -268,8 +278,10 @@ namespace prims_kruskal
             this.Dibujar();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnGrafo6_Click(object sender, EventArgs e)
         {
+            this.Reset();
+
             var n1 = new NodoVisual();
             n1.Center = new Point(13, 13);
             n1.nombre = "N1";
@@ -330,8 +342,10 @@ namespace prims_kruskal
             this.Dibujar();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnGrafo12_Click(object sender, EventArgs e)
         {
+            this.Reset();
+
             var n1 = new NodoVisual();
             n1.Center = new Point(13, 13);
             n1.nombre = "N1";
@@ -409,7 +423,6 @@ namespace prims_kruskal
             var e11 = new EnlaceVisual(10, n10, n11);
             var e12 = new EnlaceVisual(52, n11, n12);
             var e13 = new EnlaceVisual(19, n12, n7);
-            var e14 = new EnlaceVisual(13, n10, n9);
 
             g.AgregarEnlace(e1);
             g.AgregarEnlace(e2);
@@ -424,7 +437,6 @@ namespace prims_kruskal
             g.AgregarEnlace(e11);
             g.AgregarEnlace(e12);
             g.AgregarEnlace(e13);
-            g.AgregarEnlace(e14);
 
             this.enlaces.Add(e1);
             this.enlaces.Add(e2);
@@ -439,7 +451,6 @@ namespace prims_kruskal
             this.enlaces.Add(e11);
             this.enlaces.Add(e12);
             this.enlaces.Add(e13);
-            this.enlaces.Add(e14);
 
             this.Dibujar();
         }

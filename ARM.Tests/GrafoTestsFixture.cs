@@ -243,5 +243,52 @@ namespace ARM.Tests
             Assert.AreEqual(9, enlaces[5].Peso);
             Assert.AreEqual(20, enlaces[6].Peso);
         }
+        
+        [TestMethod]
+        public void DeberiaDevolverLaListaDeEnlacesVisitadosDelNodo()
+        {
+            Grafo g = new Grafo();
+
+            var n1 = new Nodo("N1");
+            var n2 = new Nodo("N2");
+            var n3 = new Nodo("N3");
+            var n4 = new Nodo("N4");
+            var n5 = new Nodo("N5");
+            var n6 = new Nodo("N6");
+            
+            g.AgregarNodo(n1);
+            g.AgregarNodo(n2);
+            g.AgregarNodo(n3);
+            g.AgregarNodo(n4);
+            g.AgregarNodo(n5);
+            g.AgregarNodo(n6);
+
+            var e1 = new Enlace(2, n1, n2);
+            var e2 = new Enlace(7, n2, n3);
+            var e3 = new Enlace(3, n1, n3);
+            var e4 = new Enlace(20, n1, n6);
+            var e5 = new Enlace(5, n3, n6);
+            var e6 = new Enlace(9, n1, n5);
+            var e7 = new Enlace(3, n5, n4);
+            
+            g.AgregarEnlace(e1);
+            g.AgregarEnlace(e2);
+            g.AgregarEnlace(e3);
+            g.AgregarEnlace(e4);
+            g.AgregarEnlace(e5);
+            g.AgregarEnlace(e6);
+            g.AgregarEnlace(e7);
+
+            n1.visitado = true;
+            n2.visitado = true;
+            n3.visitado = true;
+
+            List<Enlace> enlaces = g.GetEnlacesVisitados(n1);
+            
+            Assert.IsFalse(enlaces.Contains(e4)); // No Esta visitado
+            Assert.IsFalse(enlaces.Contains(e6));
+            Assert.IsTrue(enlaces.Contains(e1));
+            Assert.IsTrue(enlaces.Contains(e3));
+        }
     }
 }

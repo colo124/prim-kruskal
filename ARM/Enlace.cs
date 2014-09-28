@@ -41,7 +41,18 @@ namespace ARM
         {
             return (this.NodoA.visitado && this.NodoB.visitado);
         }
+
+        public Nodo GetOtroNodo(Nodo n1)
+        {
+             if (this.NodoA == n1)
+                return this.NodoB;
+             if (this.NodoB == n1)
+                 return this.NodoA;
+            return null;
+        }
     }
+
+
 
     public class CompararEnlace : IComparer<Enlace>
     {
@@ -50,5 +61,6 @@ namespace ARM
             return (x.Peso.CompareTo(y.Peso));
         }
     }
+    
 
 }

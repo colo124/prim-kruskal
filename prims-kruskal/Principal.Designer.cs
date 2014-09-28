@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Draw = new System.Windows.Forms.Button();
+            this.btnDibujarNodo = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -36,8 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnKruskal = new System.Windows.Forms.Button();
+            this.btnPrim = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.Hasta = new System.Windows.Forms.ComboBox();
@@ -57,28 +57,28 @@
             this.directorySearcher9 = new System.DirectoryServices.DirectorySearcher();
             this.directorySearcher10 = new System.DirectoryServices.DirectorySearcher();
             this.directorySearcher11 = new System.DirectoryServices.DirectorySearcher();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDibujarEnlace = new System.Windows.Forms.Button();
             this.lblResultado = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnGrafo6 = new System.Windows.Forms.Button();
+            this.btnGrafo12 = new System.Windows.Forms.Button();
+            this.btnGrafo3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Draw
+            // btnDibujarNodo
             // 
-            this.Draw.Location = new System.Drawing.Point(685, 169);
-            this.Draw.Name = "Draw";
-            this.Draw.Size = new System.Drawing.Size(141, 23);
-            this.Draw.TabIndex = 0;
-            this.Draw.Text = "Dibujar";
-            this.Draw.UseVisualStyleBackColor = true;
-            this.Draw.Click += new System.EventHandler(this.button1_Click);
+            this.btnDibujarNodo.Location = new System.Drawing.Point(685, 169);
+            this.btnDibujarNodo.Name = "btnDibujarNodo";
+            this.btnDibujarNodo.Size = new System.Drawing.Size(141, 23);
+            this.btnDibujarNodo.TabIndex = 0;
+            this.btnDibujarNodo.Text = "Dibujar";
+            this.btnDibujarNodo.UseVisualStyleBackColor = true;
+            this.btnDibujarNodo.Click += new System.EventHandler(this.btnDibujarNodo_Click);
             // 
             // textBox1
             // 
@@ -131,8 +131,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.btnKruskal);
+            this.groupBox1.Controls.Add(this.btnPrim);
             this.groupBox1.Location = new System.Drawing.Point(626, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(267, 46);
@@ -140,25 +140,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Algoritmo";
             // 
-            // button3
+            // btnKruskal
             // 
-            this.button3.Location = new System.Drawing.Point(153, 17);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(62, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Kruskal";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.btnKruskal.Location = new System.Drawing.Point(153, 17);
+            this.btnKruskal.Name = "btnKruskal";
+            this.btnKruskal.Size = new System.Drawing.Size(62, 23);
+            this.btnKruskal.TabIndex = 1;
+            this.btnKruskal.Text = "Kruskal";
+            this.btnKruskal.UseVisualStyleBackColor = true;
+            this.btnKruskal.Click += new System.EventHandler(this.btnKruskal_Click);
             // 
-            // button2
+            // btnPrim
             // 
-            this.button2.Location = new System.Drawing.Point(51, 17);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(62, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Prim";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnPrim.Location = new System.Drawing.Point(51, 17);
+            this.btnPrim.Name = "btnPrim";
+            this.btnPrim.Size = new System.Drawing.Size(62, 23);
+            this.btnPrim.TabIndex = 0;
+            this.btnPrim.Text = "Prim";
+            this.btnPrim.UseVisualStyleBackColor = true;
+            this.btnPrim.Click += new System.EventHandler(this.btnPrim_Click);
             // 
             // groupBox2
             // 
@@ -306,15 +306,15 @@
             this.directorySearcher11.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher11.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
-            // button1
+            // btnDibujarEnlace
             // 
-            this.button1.Location = new System.Drawing.Point(686, 268);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Dibujar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnDibujarEnlace.Location = new System.Drawing.Point(686, 268);
+            this.btnDibujarEnlace.Name = "btnDibujarEnlace";
+            this.btnDibujarEnlace.Size = new System.Drawing.Size(141, 23);
+            this.btnDibujarEnlace.TabIndex = 13;
+            this.btnDibujarEnlace.Text = "Dibujar";
+            this.btnDibujarEnlace.UseVisualStyleBackColor = true;
+            this.btnDibujarEnlace.Click += new System.EventHandler(this.btnDibujarEnlace_Click);
             // 
             // lblResultado
             // 
@@ -335,46 +335,46 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Resultado";
             // 
-            // button4
+            // btnSiguiente
             // 
-            this.button4.Location = new System.Drawing.Point(685, 500);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(141, 23);
-            this.button4.TabIndex = 16;
-            this.button4.Text = "Siguiente";
-            this.button4.UseCompatibleTextRendering = true;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnSiguiente.Location = new System.Drawing.Point(685, 500);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(141, 23);
+            this.btnSiguiente.TabIndex = 16;
+            this.btnSiguiente.Text = "Siguiente";
+            this.btnSiguiente.UseCompatibleTextRendering = true;
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
-            // button5
+            // btnGrafo6
             // 
-            this.button5.Location = new System.Drawing.Point(722, 55);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 17;
-            this.button5.Text = "Grafo (6)";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnGrafo6.Location = new System.Drawing.Point(722, 55);
+            this.btnGrafo6.Name = "btnGrafo6";
+            this.btnGrafo6.Size = new System.Drawing.Size(75, 23);
+            this.btnGrafo6.TabIndex = 17;
+            this.btnGrafo6.Text = "Grafo (6)";
+            this.btnGrafo6.UseVisualStyleBackColor = true;
+            this.btnGrafo6.Click += new System.EventHandler(this.btnGrafo6_Click);
             // 
-            // button6
+            // btnGrafo12
             // 
-            this.button6.Location = new System.Drawing.Point(818, 55);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 18;
-            this.button6.Text = "Grafo (12)";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnGrafo12.Location = new System.Drawing.Point(818, 55);
+            this.btnGrafo12.Name = "btnGrafo12";
+            this.btnGrafo12.Size = new System.Drawing.Size(75, 23);
+            this.btnGrafo12.TabIndex = 18;
+            this.btnGrafo12.Text = "Grafo (12)";
+            this.btnGrafo12.UseVisualStyleBackColor = true;
+            this.btnGrafo12.Click += new System.EventHandler(this.btnGrafo12_Click);
             // 
-            // button7
+            // btnGrafo3
             // 
-            this.button7.Location = new System.Drawing.Point(626, 55);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 19;
-            this.button7.Text = "Grafo (3)";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.btnGrafo3.Location = new System.Drawing.Point(626, 55);
+            this.btnGrafo3.Name = "btnGrafo3";
+            this.btnGrafo3.Size = new System.Drawing.Size(75, 23);
+            this.btnGrafo3.TabIndex = 19;
+            this.btnGrafo3.Text = "Grafo (3)";
+            this.btnGrafo3.UseVisualStyleBackColor = true;
+            this.btnGrafo3.Click += new System.EventHandler(this.btnGrafo3_Click);
             // 
             // Principal
             // 
@@ -382,16 +382,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(930, 535);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnGrafo3);
+            this.Controls.Add(this.btnGrafo12);
+            this.Controls.Add(this.btnGrafo6);
+            this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDibujarEnlace);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.Draw);
+            this.Controls.Add(this.btnDibujarNodo);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Principal";
@@ -412,7 +412,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Draw;
+        private System.Windows.Forms.Button btnDibujarNodo;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
@@ -439,15 +439,15 @@
         private System.DirectoryServices.DirectorySearcher directorySearcher9;
         private System.DirectoryServices.DirectorySearcher directorySearcher10;
         private System.DirectoryServices.DirectorySearcher directorySearcher11;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnDibujarEnlace;
+        private System.Windows.Forms.Button btnPrim;
+        private System.Windows.Forms.Button btnKruskal;
         private System.Windows.Forms.Label lblResultado;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Button btnGrafo6;
+        private System.Windows.Forms.Button btnGrafo12;
+        private System.Windows.Forms.Button btnGrafo3;
     }
 }
 

@@ -122,5 +122,21 @@ namespace ARM
             Enlaces.Sort(new CompararEnlace());
             return Enlaces;
         }
+
+        public List<Enlace> GetEnlacesVisitados(Nodo n1)
+        {
+            List<Enlace> resultado = new List<Enlace>();
+            foreach (var enlace in this.Enlaces)
+            {
+                Nodo naux = enlace.GetOtroNodo(n1);
+                if(naux != null)
+                {
+                    if (naux.visitado)
+                        resultado.Add(enlace);
+                }
+            }
+            
+            return resultado;
+        }
     }
 }
