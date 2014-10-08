@@ -11,13 +11,21 @@ namespace ARM
         public List<Nodo> Nodos { get; private set; }
         private List<Enlace> Enlaces;
 
-        public Grafo()
+        /// <summary>
+        /// Constructor de grafo. Inicializa el grafo
+        /// </summary>
+        public Grafo() 
         {
             this.Nodos = new List<Nodo>();
             this.Enlaces = new List<Enlace>();
         }
 
-        public bool AgregarNodo(Nodo n)
+        /// <summary>
+        /// Si el nodo no existe lo agrego a la lista de nodos
+        /// </summary>
+        /// <param name="n">Nodo a agregar</param>
+        /// <returns>True si el nodo se agrego</returns>
+        public bool AgregarNodo(Nodo n) 
         {
             if (ExisteNodo(n))
             {
@@ -27,7 +35,12 @@ namespace ARM
             return true;
         }
 
-        public bool AgregarEnlace(Enlace e)
+        /// <summary>
+        ///  Si ambos nodos en el enlace existen, agrego el enlace al grafo
+        /// </summary>
+        /// <param name="e">Enlace a agregar</param>
+        /// <returns>True si se agrego</returns>
+        public bool AgregarEnlace(Enlace e) //
         {
 
             if (ExisteNodo(e.NodoA) && ExisteNodo(e.NodoB))
@@ -39,7 +52,12 @@ namespace ARM
 
         }
 
-        private bool ExisteNodo(Nodo n)
+        /// <summary>
+        /// Busca si existe el nodo en el grafo
+        /// </summary>
+        /// <param name="n">Nodo a buscar</param>
+        /// <returns>True si existe</returns>
+        private bool ExisteNodo(Nodo n)  
         {
             foreach (Nodo aux in Nodos)
             {
@@ -48,30 +66,26 @@ namespace ARM
                     return true;
                 }
             }
+
             return false;
         }
 
+        /// <summary>
+        /// Elimina el enlace
+        /// </summary>
+        /// <param name="e">Enlace a eliminar</param>
+        /// <returns>True si se elimino</returns>
         public bool BorrarEnlace(Enlace e)
         {
             return this.Enlaces.Remove(e);
         }
-
-
-        public Enlace GetEnlace(Nodo n, Nodo f)
-        {
-            foreach (var e in this.Enlaces)
-            {
-                if ((e.NodoA.Equals(n) && e.NodoB.Equals(f)) || (e.NodoA.Equals(f) && e.NodoB.Equals(n)) )
-                {
-                    return e;
-                }
-                
-            }
-
-            return null;
-        }
-
-        public List<Enlace> GetEnlaces(Nodo n1)
+        
+        /// <summary>
+        /// Devuelve una lista de enlaces que contiene el nodo pasado por parametro, si al menos uno de los nodos del enlace no esta visitado
+        /// </summary>
+        /// <param name="n1"> Nodo a buscar</param>
+        /// <returns>Lista de enlaces</returns>
+        public List<Enlace> GetEnlaces(Nodo n1) 
         {
             var aux = new List<Enlace>();
             foreach (var e in this.Enlaces)
@@ -81,49 +95,53 @@ namespace ARM
                     aux.Add(e);
                 }
             }
+
             return aux;
         }
-
-
-        public Nodo GetNodo(string nombre)
-        {
-            foreach (var nodo in this.Nodos)
-            {
-                if (nodo.nombre.Equals(nombre))
-                {
-                    nodo.visitado = true;
-                    return nodo;
-                }
-            }
-            return null;
-        }
-
-        public Nodo GetNodo()
+        
+        /// <summary>
+        /// Devuelve el primer nodo del grafo y lo marca en visitado
+        /// </summary>
+        /// <returns>Devuelve Nodo</returns>
+        public Nodo GetNodo() 
         {
             var n = this.Nodos.FirstOrDefault(); 
             if(n!=null)
                 n.visitado = true;
+
             return n;
         }
 
-        public bool TodosVisitados()
-        {
+        /// <summary>
+        /// Verifica si todos los nodos fueron visitados
+        /// </summary>
+        /// <returns>True si todos fueron visitados</returns>
+        public bool TodosVisitados() 
+        { 
             foreach (var nodo in this.Nodos)
             {
                 if (!nodo.visitado)
                     return false;
             }
-
             return true;
         }
 
-        public List<Enlace> GetEnlacesDeMenorAMayor()
+        /// <summary>
+        /// Devuelve una lista de los enlaces ordenados de menor a mayor
+        /// </summary>
+        /// <returns>Lista de enlaces</returns>
+        public List<Enlace> GetEnlacesDeMenorAMayor() 
         {
-            Enlaces.Sort(new CompararEnlace());
+            Enlaces.Sort(new ComparadorDeEnlaces());
             return Enlaces;
         }
 
-        public List<Enlace> GetEnlacesVisitados(Nodo n1)
+        /// <summary>
+        /// Devuelve una lista de enlaces donde ambos nodos estan visitados
+        /// </summary>
+        /// <param name="n1">Nodo a comparar</param>
+        /// <returns>Lista de enlaces visitados</returns>
+        public List<Enlace> GetEnlacesVisitados(Nodo n1) 
         {
             List<Enlace> resultado = new List<Enlace>();
             foreach (var enlace in this.Enlaces)

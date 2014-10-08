@@ -75,68 +75,6 @@ namespace ARM.Tests
         }
 
         [TestMethod]
-        public void DeberiaDevolverNodoYMarcarloComoVisitado()
-        {
-            Grafo g = new Grafo();
-            Nodo n1 = new Nodo("n1");
-            Nodo n2 = new Nodo("n2");
-
-            Enlace e = new Enlace(55, n1, n2);
-            g.AgregarNodo(n1);
-            g.AgregarNodo(n2);
-            g.AgregarEnlace(e);
-            var n3 = g.GetNodo("n1");
-            Assert.AreEqual(n3, n1);
-            Assert.IsTrue(n3.visitado);
-        }
-
-        [TestMethod]
-        public void DeberiaDevolverNullSiElNodoNoExiste()
-        {
-            Grafo g = new Grafo();
-            Nodo n1 = new Nodo("n1");
-            Nodo n2 = new Nodo("n2");
-
-            Enlace e = new Enlace(55, n1, n2);
-            g.AgregarNodo(n1);
-            g.AgregarNodo(n2);
-            g.AgregarEnlace(e);
-            var n3 = g.GetNodo("n8");
-            Assert.IsNull(n3);
-        }
-
-        [TestMethod]
-        public void DeberiaDevolverNodoPorDefectoSiNoPasoParametros()
-        {
-            Grafo g = new Grafo();
-            Nodo n1 = new Nodo("n1");
-            Nodo n2 = new Nodo("n2");
-
-            Enlace e = new Enlace(55, n1, n2);
-            g.AgregarNodo(n1);
-            g.AgregarNodo(n2);
-            g.AgregarEnlace(e);
-            var n3 = g.GetNodo();
-            Assert.AreEqual(n3,n1);
-            Assert.IsTrue(n3.visitado);
-        }
-
-        [TestMethod]
-        public void DeberiaDevolverEnlace()
-        {
-            Grafo g = new Grafo();
-            Nodo n = new Nodo("colo");
-            Nodo b = new Nodo("colo1");
-
-            Enlace e = new Enlace(55, n, b);
-            g.AgregarNodo(n);
-            g.AgregarNodo(b);
-            g.AgregarEnlace(e);
-            Enlace e1 = g.GetEnlace(n, b);
-            Assert.AreEqual(e, e1);
-        }
-        
-        [TestMethod]
         public void DeberiaDevolverLaListaDeEnlacesDe1NodoSiNoSeVisitoElOtroNodo()
         {
             Grafo g = new Grafo();

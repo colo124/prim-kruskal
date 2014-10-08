@@ -10,27 +10,37 @@ namespace ARM
     {
         public static List<Enlace> Ejecutar(Grafo g)
         {
-            var recorrido = new List<Enlace>();
-            var enlaces = g.GetEnlacesDeMenorAMayor();
-            foreach (var enlace in enlaces)
+            var arm = new List<Enlace>();                       // Creo la lista de enlaces que contendra el ARM 
+            var enlaces = g.GetEnlacesDeMenorAMayor();          // Obtengo la lista de enlaces del nodo ordenada de menor a mayor peso
+            foreach (var enlace in enlaces)                     // Recorro la lista de enlaces
             {
-                if (!enlace.NodosVisitados())
+                if (!enlace.NodosVisitados())                   // Si el enlaces no tiene ambos nodos visitados
                 {
-                    enlace.NodoA.visitado = true;
-                    enlace.NodoB.visitado = true;
-                    recorrido.Add(enlace);
+                    enlace.NodoA.visitado = true;               // Marco el NodoA del enlace como visitado
+                    enlace.NodoB.visitado = true;               // Marco el NodoB del enlace como visitado
+                    arm.Add(enlace);                            // Agrego el enlace al ARM
                 }
                 else
                 {
-                    if(!FormaCiclo(g,g.GetEnlacesVisitados(enlace.NodoA), new List<Enlace>(), recorrido, enlace.NodoA, enlace.NodoB))
+                    if(!FormaCiclo(g,g.GetEnlacesVisitados(enlace.NodoA), new List<Enlace>(), arm, enlace.NodoA, enlace.NodoB))  // Si no se forma un ciclo
                     {
-                        recorrido.Add(enlace);
+                        arm.Add(enlace);                       // Agrego el enlace al ARM
                     }
                 }
             }
-            return recorrido;
+            return arm;                                        // Devuelve el ARM
         }
-
+        
+        /// <summary>
+        /// Verifica que no se forme un ciclo entre el NodoA y el NodoB
+        /// </summary>
+        /// <param name="g">Grafo</param>
+        /// <param name="enlaces">Lista de enlaces que contienen el NodoA</param>
+        /// <param name="visitados">Lista de enlaces visitado</param>
+        /// <param name="resultado">ARM parcial del algoritmo de Kruskal</param>
+        /// <param name="nodoA">NodoA</param>
+        /// <param name="nodoB">NodoB</param>
+        /// <returns>Retorna true si exciste ciclo</returns>
         public static bool FormaCiclo(Grafo g, List<Enlace> enlaces, List<Enlace> visitados, List<Enlace> resultado, Nodo nodoA, Nodo nodoB)
         {
             foreach (var e in enlaces)
@@ -51,6 +61,11 @@ namespace ARM
             return false;
         }
 
+        /// <summary>
+        /// Elimina los enlaces visitados 
+        /// </summary>
+        /// <param name="enlaces">Lista de enlaces</param>
+        /// <param name="visitados">Lista de enlaces a eliminar</param>
         private static void BorrarEnlacesVisitados(List<Enlace> enlaces, List<Enlace> visitados)
         {
             foreach (var e in visitados)

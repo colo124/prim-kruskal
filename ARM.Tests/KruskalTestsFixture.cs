@@ -67,11 +67,12 @@ namespace ARM.Tests
 
             var l = Kruskal.Ejecutar(g);
             Assert.IsNotNull(l);
-            Assert.AreEqual(4, l.Count);
+            Assert.AreEqual(5, l.Count);
             Assert.AreEqual(e1, l[0]);
             Assert.AreEqual(e3, l[1]);
             Assert.AreEqual(e7, l[2]);
             Assert.AreEqual(e5, l[3]);
+            Assert.AreEqual(e6, l[4]);
         }
     }
 }

@@ -11,13 +11,20 @@ namespace ARM
         public string nombre { get; set; }
         public bool visitado { get; set; }
 
-        public Nodo(string nombre)
+        /// <summary>
+        ///  Constructor de Nodo inicializa la clase
+        /// </summary>
+        /// <param name="nombre"></param>
+        public Nodo(string nombre) // Inicializo la clase Nodo
         {
             this.nombre = nombre;
             this.visitado = false;
         }
 
-        public Nodo()
+        /// <summary>
+        ///  Constructor de Nodo inicializa la clase
+        /// </summary>
+        public Nodo()  
         {
             this.nombre = null;
         }
